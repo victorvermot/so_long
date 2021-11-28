@@ -6,11 +6,10 @@
 /*   By: vvermot- <vvermot-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 16:22:14 by vvermot-          #+#    #+#             */
-/*   Updated: 2021/11/28 12:32:57 by vvermot-         ###   ########.fr       */
+/*   Updated: 2021/11/28 16:37:24 by vvermot-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libraries/mlx/mlx.h"
 #include "so_long.h"
 
 void	*add_img_to_window(t_game *game, char *path, int x, int y)

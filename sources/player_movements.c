@@ -6,7 +6,7 @@
 /*   By: vvermot- <vvermot-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 13:06:02 by vvermot-          #+#    #+#             */
-/*   Updated: 2021/11/28 13:21:10 by vvermot-         ###   ########.fr       */
+/*   Updated: 2021/11/28 16:17:00 by vvermot-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,32 +37,46 @@ static int	check_next_tile(t_game *game, char c)
 	return (1);
 }
 
-static void	switch_tiles(t_game *game, int dir)
+static void	check_up_down(t_game *game, int dir)
 {
 	if (dir == 13)
 	{
 		game->board->board[game->player_pos_x - 1][game->player_pos_y] = 'P';
 		game->board->board[game->player_pos_x][game->player_pos_y] = '0';
+		game->player_pos_x -= 1;
 	}
 	else if (dir == 1)
 	{
 		game->board->board[game->player_pos_x + 1][game->player_pos_y] = 'P';
 		game->board->board[game->player_pos_x][game->player_pos_y] = '0';
+		game->player_pos_x += 1;
 	}
-	else if (dir == 2)
+}
+
+static void	switch_tiles(t_game *game, int dir)
+{
+	game->map_pos_x = game->player_pos_y * 35;
+	game->map_pos_y = game->player_pos_x * 57;
+	generate_images(game, '0', game->player_pos_x, game->player_pos_y);
+	check_up_down(game, dir);
+	if (dir == 2)
 	{
 		game->board->board[game->player_pos_x][game->player_pos_y + 1] = 'P';
 		game->board->board[game->player_pos_x][game->player_pos_y] = '0';
+		game->player_pos_y += 1;
 	}
 	else if (dir == 0)
 	{
 		game->board->board[game->player_pos_x][game->player_pos_y - 1] = 'P';
 		game->board->board[game->player_pos_x][game->player_pos_y] = '0';
+		game->player_pos_y -= 1;
 	}
-	generate_map(game->board, game);
+	game->map_pos_x = game->player_pos_y * 35;
+	game->map_pos_y = game->player_pos_x * 57;
+	generate_images(game, 'P', game->player_pos_x, game->player_pos_y);
 }
 
-int	player_movements(int key, t_game *game)
+static int	player_movements(int key, t_game *game)
 {
 	if (key == 13)
 	{
@@ -88,5 +102,14 @@ int	player_movements(int key, t_game *game)
 				game->board->board[game->player_pos_x][game->player_pos_y - 1]))
 			switch_tiles(game, 0);
 	}
+	return (0);
+}
+
+int	get_key_input(int key, t_game *game)
+{
+	if (key == 13 || key == 1 || key == 2 || key == 0)
+		player_movements(key, game);
+	else if (key == 53)
+		esc_key(key, game);
 	return (0);
 }

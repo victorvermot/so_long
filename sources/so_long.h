@@ -6,14 +6,14 @@
 /*   By: vvermot- <vvermot-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 11:27:53 by vvermot-          #+#    #+#             */
-/*   Updated: 2021/11/28 12:39:39 by vvermot-         ###   ########.fr       */
+/*   Updated: 2021/11/28 16:24:47 by vvermot-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# include "./libraries/libft/libft.h"
-# include "./libraries/mlx/mlx.h"
+# include "../libraries/libft/libft.h"
+# include "../libraries/mlx/mlx.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -66,8 +66,9 @@ void	kill_app(int opt, char **board, int x);
 char	**get_num_lines(int fd, t_board *board);
 void	generate_map(t_board *board, t_game	*vars);
 void	*add_img_to_window(t_game *game, char *path, int x, int y);
-int		player_movements(int key, t_game *game);
+int		get_key_input(int key, t_game *game);
 void	generate_images(t_game *game, char c, int x, int y);
 void	generate_new_map(t_board *board, t_game	*game);
+int		esc_key(int key, t_game *game);
 
 #endif

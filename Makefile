@@ -1,9 +1,5 @@
-SRCS	= 	so_long.c			\
-			map_checks.c		\
-			get_next_line.c		\
-			get_next_line_utils.c	\
-			map_generator.c		\
-			player_movements.c
+SRCS	= 	${addprefix sources/, so_long.c map_checks.c map_generator.c player_movements.c}	\
+			${addprefix get_next_line/, get_next_line.c	get_next_line_utils.c}
 
 NAME		= 	so_long
 FLGS		= 	-Wall -Wextra -Werror
