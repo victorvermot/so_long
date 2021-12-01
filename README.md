@@ -3,7 +3,7 @@
 # Goals
 so_long is a project developped in ecole 42
 
-The goal of the project was to create a small top down 2D game using Minilibx, a library used to create graphical interfaces. The project looks to introduce skills in:
+The goal of the project was to create a small top down 2D game using Minilibx, a library that allows the creation of minimal graphical interfaces. The project looks to introduce skills in:
 - Sprites manipulation
 - Introduction to Graphic interface
 - Basic gameplay elements
@@ -24,9 +24,10 @@ The game works following several rules.
 - Once you get all of them, the exit door opens and you can leave
 - Walking into the enemy will kill the player
 - You can quit the game using the `ESC` key
+- The enemy will walk from left to right until encountering a wall/tomato, then he will start walk in the opposite direction
 
 # Map Rules
-The file used to generate the game should be formatted this way:
+The following is an example of a map correctly formated:
 ```shell
 1111111111111111111111111111111111
 1E0000000000000C00000C000000000001
@@ -58,7 +59,7 @@ make
 ```
 The executable takes a .ber file as argument. You can play around and modify the map, as long as it follows the rules, the game will work.
 # Sources
-I found all of the sprites online, on the [Sprite Ressources](https://www.spriters-resource.com/) website. I edited most of them on Gimp to make the game coherent.
+I found all of the sprites online, on the [Sprite Ressources](https://www.spriters-resource.com/) website. I edited most of them on Gimp to make the game look coherent.
 1. The Sans sprites were made by "MisterMike" and can be found [here](https://www.spriters-resource.com/custom_edited/undertalecustoms/sheet/123992/).
 2. The Ness sprites were ripped from Earthbound by users "Depressed Mario", "M. Bison", "Matheus123" and "Tonberry2k". They can be found [here](https://www.spriters-resource.com/snes/earthbound/sheet/104953/)
 3. The rest of the sprites come from Earthbound and were ripped by user "Ryan914". They can be found [here](https://www.spriters-resource.com/snes/earthbound/sheet/3159/)
