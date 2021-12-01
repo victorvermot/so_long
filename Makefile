@@ -1,4 +1,4 @@
-SRCS	= 	${addprefix sources/, so_long.c map_checks.c map_generator.c player_movements.c}	\
+SRCS	= 	${addprefix sources/, so_long.c map_checks.c map_generator.c player_movements.c player_animations.c enemy_movement.c}	\
 			${addprefix get_next_line/, get_next_line.c	get_next_line_utils.c}
 
 NAME		= 	so_long
@@ -10,7 +10,7 @@ MLX_PATH	= 	./libraries/mlx/
 LBFT_PATH	= 	./libraries/libft/
 FRAMLIBS	= 	-L ${LBFT_PATH} -lft -L ${MLX_PATH} -lmlx -framework OpenGL -framework AppKit
 
-all:		${LIBFT} ${MLX} ${NAME}
+all:		libft mlx ${NAME}
 
 .c.o:
 			${GCC} ${FLGS} -Imlx -c $< -o ${<:.c=.o}
@@ -18,14 +18,16 @@ all:		${LIBFT} ${MLX} ${NAME}
 ${NAME}:	${OBJS}
 			${GCC} ${FLGS} -I ${MLX_PATH} -I ${LBFT_PATH} -o ${NAME} ${OBJS} ${FRAMLIBS}
 
-${LIBFT}:
+libft:
 			@make -C ${LBFT_PATH}
 
-${MLX}:
+mlx:
 			@make -C ${MLX_PATH}
 
 fclean:		clean
 			${RM} ${NAME}
+			@make -C $(LBFT_PATH) fclean
+			@make -C $(MLX_PATH) fclean
 
 clean:
 			${RM} ${OBJS}

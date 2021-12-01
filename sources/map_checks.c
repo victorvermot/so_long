@@ -6,38 +6,38 @@
 /*   By: vvermot- <vvermot-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 10:38:24 by vvermot-          #+#    #+#             */
-/*   Updated: 2021/11/28 13:28:22 by vvermot-         ###   ########.fr       */
+/*   Updated: 2021/11/29 19:37:02 by vvermot-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static char	*check_middle_line(char *line, t_board *board, int len, char *map)
+static char	*check_middle_line(char *l, t_board *board, int len, char *map)
 {
 	int	i;
 	int	k;
 
 	i = 0;
 	k = 0;
-	while (line[k] && line[k] != '\n')
+	while (l[k] && l[k] != '\n')
 		k++;
 	board->num_col = k;
-	if (line[0] != '1' || line[k - 1] != '1' || len != k)
+	if (l[0] != '1' || l[k - 1] != '1' || len != k)
 		return (NULL);
-	while (line[++i])
+	while (l[++i])
 	{
-		if (line[i] == '1' || line[i] == '0' || line[i] == '\n')
+		if (l[i] == '1' || l[i] == '0' || l[i] == '\n' || l[i] == 'X')
 			continue ;
-		else if (line[i] == 'C')
+		else if (l[i] == 'C')
 			board->num_c += 1;
-		else if (line[i] == 'P')
+		else if (l[i] == 'P')
 			board->num_s += 1;
-		else if (line[i] == 'E')
+		else if (l[i] == 'E')
 			board->num_e += 1;
 		else
 			return (NULL);
 	}
-	map = ft_strdup(line);
+	map = ft_strdup(l);
 	return (map);
 }
 
@@ -59,17 +59,23 @@ char	**get_num_lines(int fd, t_board *board)
 {
 	int		count;
 	int		file;
-	char	c[1];
+	char	c[2561];
+	int		i;
 
+	i = 0;
 	file = read(fd, c, 1);
 	count = 0;
 	if (file <= 0)
 		kill_app(1, board->board, 0);
 	while (file)
 	{
-		file = read(fd, c, 1);
-		if (c[0] == '\n')
+		file = read(fd, c, 2560);
+	}
+	while (c[i])
+	{
+		if (c[i] == '\n' && c[i + 1] == '1')
 			count++;
+		i++;
 	}
 	close(fd);
 	board->num_row = count + 1;
@@ -85,7 +91,7 @@ static void	get_lines(int fd, t_board *board, char *line, int x)
 	len = 0;
 	while (line[len] && line[len] != '\n')
 		len++;
-	while (line)
+	while (line && last_line[0] != '\n')
 	{
 		last_line = ft_strdup(line);
 		line = get_next_line(fd);

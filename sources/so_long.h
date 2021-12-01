@@ -6,7 +6,7 @@
 /*   By: vvermot- <vvermot-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 11:27:53 by vvermot-          #+#    #+#             */
-/*   Updated: 2021/11/28 16:24:47 by vvermot-         ###   ########.fr       */
+/*   Updated: 2021/11/29 19:56:29 by vvermot-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,13 @@
 
 # define BUFFER_SIZE 1
 
-// enum e_errors {
-// 	FILE_ERROR = 1;
-// }	errors_message;
+enum e_movement_keys {
+	UP = 13,
+	DOWN = 1,
+	LEFT = 0,
+	RIGHT = 2,
+	ESC = 53
+};
 
 typedef struct s_image {
 	void	*img;
@@ -52,10 +56,15 @@ typedef struct s_game {
 	void	*win;
 	int		map_pos_x;
 	int		map_pos_y;
+	int		exit_pos_x;
+	int		exit_pos_y;
 	int		player_pos_x;
 	int		player_pos_y;
+	int		e_pos_x;
+	int		e_pos_y;
 	int		can_exit;
 	int		move_count;
+	int		is_enenmy;
 	t_board	*board;
 	t_image	img;
 }				t_game;
@@ -70,5 +79,8 @@ int		get_key_input(int key, t_game *game);
 void	generate_images(t_game *game, char c, int x, int y);
 void	generate_new_map(t_board *board, t_game	*game);
 int		esc_key(int key, t_game *game);
+void	generate_player(t_game *game, int dir);
+int		enemy_movements(int key, t_game *game);
+void	update_count(t_game *game);
 
 #endif

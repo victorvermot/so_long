@@ -6,7 +6,7 @@
 /*   By: vvermot- <vvermot-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 13:51:52 by vvermot-          #+#    #+#             */
-/*   Updated: 2021/11/28 16:21:59 by vvermot-         ###   ########.fr       */
+/*   Updated: 2021/12/01 10:26:42 by vvermot-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ void	kill_app(int opt, char **board, int x)
 		ft_putstr_fd("Well done, you beat the game", 1);
 		free_board(board, x);
 	}
+	else if (opt == 4)
+	{
+		ft_putstr_fd("You got killed", 1);
+		free_board(board, x);
+	}
 	exit(0);
 }
 
@@ -69,16 +74,16 @@ int	main(int argc, char *argv[])
 	if (argc != 2)
 		kill_app(0, board.board, 0);
 	fd = open(argv[1], O_RDONLY);
+	if (fd < 0)
+		kill_app(0, board.board, 0);
 	board.board = get_num_lines(fd, &board);
 	fd = open(argv[1], O_RDONLY);
+	if (fd < 0)
+		kill_app(0, board.board, 0);
 	check_fd(fd, &board);
-	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx,
-			board.num_col * 35, board.num_row * 57, "mlx 42");
-	game.can_exit = 0;
-	game.move_count = 0;
 	generate_map(&board, &game);
 	game.board = &board;
+	mlx_string_put(game.mlx, game.win, 10, 10, 0xF, "Move counter : ");
 	mlx_key_hook(game.win, get_key_input, &game);
 	mlx_hook(game.win, 17, 0L, ft_kill, &game);
 	mlx_loop(game.mlx);
