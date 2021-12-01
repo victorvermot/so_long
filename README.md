@@ -1,8 +1,9 @@
-# so_long
+<h1>Introduction
+</h1>
+
+So_long is a project developped by myself in ecole 42. The project was developed in C and it was done in about a week. The library used to open windows and load sprites is called Minilibx and it was given by the school. The rest of the code was done by me.
 
 # Goals
-so_long is a project developped in ecole 42
-
 The goal of the project was to create a small top down 2D game using Minilibx, a library that allows the creation of minimal graphical interfaces. The project looks to introduce skills in:
 - Sprites manipulation
 - Introduction to Graphic interface
@@ -24,7 +25,7 @@ The game works following several rules.
 - Once you get all of them, the exit door opens and you can leave
 - Walking into the enemy will kill the player
 - You can quit the game using the `ESC` key
-- The enemy will walk from left to right until encountering a wall/tomato, then he will start walk in the opposite direction
+- The enemy will walk from left to right until encountering a wall/tomato, then he will start to walk in the opposite direction
 
 # Map Rules
 The following is an example of a map correctly formated:
