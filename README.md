@@ -1,21 +1,30 @@
-<h1>Introduction
-</h1>
+# Table of contents
+1. [Introduction](#introduction)
+2. [Goals](#goals)
+3. [Overview](#overview)
+4. [Rules](#game_rules)
+	- [Game Rules](#game_rules)
+	- [Map Rules](#map_rules)
+5. [Run the game](#run)
+6. [Sources](#sources)
+
+# Introduction <a name="introduction"></a>
 
 So_long is a project developped by myself in ecole 42. The project was developed in C and it was done in about a week. The library used to open windows and load sprites is called Minilibx and it was given by the school. The rest of the code was done by me.
 
-# Goals
+# Goals <a name="goals"></a>
 The goal of the project was to create a small top down 2D game using Minilibx, a library that allows the creation of minimal graphical interfaces. The project looks to introduce skills in:
 - Sprites manipulation
 - Introduction to Graphic interface
 - Basic gameplay elements
-# **Overview of The Game**
+# **Overview of The Game** <a name="overview"></a>
 ![overview of the game](/github_images/game_basics.gif "Overview of the game")
 
 - The game aesthetic is from the Snes game earthbound.
 - The goal of the game is to collect the tomatoes and reach the exit without getting killed by Sans.
 - The player can move using WASD keys.
 
-# Game Rules
+# Game Rules <a name="game_rules"></a>
 The game works following several rules.
 - The map is generated via a .ber file, following the rules specified in the **Map Rules** section.
 - The player can move up, down, left and right
@@ -27,7 +36,7 @@ The game works following several rules.
 - You can quit the game using the `ESC` key
 - The enemy will walk from left to right until encountering a wall/tomato, then he will start to walk in the opposite direction
 
-# Map Rules
+# Map Rules <a name="map_rules"></a>
 The following is an example of a map correctly formated:
 ```shell
 1111111111111111111111111111111111
@@ -51,7 +60,7 @@ Then, the map has to obey the following rules:
 - The map has to be rectangular, thus all lines must have the same length
 - `E` `P` and `X` are can only be present once
 - There can be any number of `C` `1` and `0`
-# Run The Game
+# Run The Game <a name="run"></a>
 If you want to try the game yourself, you can git clone the project, then run the commands:
 
 ```shell
@@ -59,7 +68,7 @@ make
 ./so_long map.ber
 ```
 The executable takes a .ber file as argument. You can play around and modify the map, as long as it follows the rules, the game will work.
-# Sources
+# Sources <a name="sources"></a>
 I found all of the sprites online, on the [Sprite Ressources](https://www.spriters-resource.com/) website. I edited most of them on Gimp to make the game look coherent.
 1. The Sans sprites were made by "MisterMike" and can be found [here](https://www.spriters-resource.com/custom_edited/undertalecustoms/sheet/123992/).
 2. The Ness sprites were ripped from Earthbound by users "Depressed Mario", "M. Bison", "Matheus123" and "Tonberry2k". They can be found [here](https://www.spriters-resource.com/snes/earthbound/sheet/104953/)
